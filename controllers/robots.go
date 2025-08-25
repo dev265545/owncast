@@ -20,7 +20,7 @@ func GetRobotsDotTxt(w http.ResponseWriter, r *http.Request) {
 		contents = append(contents, "Disallow: /")
 	}
 
-	txt := []byte(strings.Join(contents, "\n"))
+if _, err := w.Write([]byte(strings.Join(contents, "\n"))); err != nil {
 
 	if _, err := w.Write(txt); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
